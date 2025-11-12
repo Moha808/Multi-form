@@ -9,10 +9,12 @@
 <body>
     <main class="hero">
         <div class="form-box" id="form-box">
-            <div class="button-box">
+            <!-- ACCESSIBILITY FIX: Added role="tablist" for screen readers -->
+            <div class="button-box" role="tablist">
                 <div id="btn-slider"></div>
-                <button type="button" class="toggle-btn" id="login-btn">Log In</button>
-                <button type="button" class="toggle-btn" id="register-btn">Register</button>
+                <!-- Set initial active state and ARIA attributes -->
+                <button type="button" class="toggle-btn active" id="login-btn" role="tab" aria-selected="true" aria-controls="login-form">Log In</button>
+                <button type="button" class="toggle-btn" id="register-btn" role="tab" aria-selected="false" aria-controls="register-form">Register</button>
             </div>
             <div class="social-icons">
                 <a href="#" aria-label="Login with Facebook"><img src="facebook.png" alt="Facebook logo"></a>
@@ -20,14 +22,15 @@
                 <a href="#" aria-label="Login with Snapchat"><img src="snap.png" alt="Snapchat logo"></a>
             </div>
 
-            <form id="login-form" class="input-group">
+            <form id="login-form" class="input-group" role="tabpanel" aria-labelledby="login-btn">
                 <div class="input-container">
+                    <!-- FIX: Added placeholder=" " to enable floating label effect -->
+                    <input id="login-user" type="text" class="input-field" required autocomplete="username" placeholder=" ">
                     <label for="login-user" class="input-label">User ID</label>
-                    <input id="login-user" type="text" class="input-field" required autocomplete="username">
                 </div>
                 <div class="input-container">
+                    <input id="login-pass" type="password" class="input-field" required autocomplete="current-password" placeholder=" ">
                     <label for="login-pass" class="input-label">Password</label>
-                    <input id="login-pass" type="password" class="input-field" required autocomplete="current-password">
                 </div>
                 <label class="checkbox-container">
                     <input type="checkbox" class="check-box">
@@ -36,18 +39,18 @@
                 <button type="submit" class="submit-btn">Log in</button>
             </form>
 
-            <form id="register-form" class="input-group">
+            <form id="register-form" class="input-group" role="tabpanel" aria-labelledby="register-btn">
                 <div class="input-container">
+                    <input id="reg-user" type="text" class="input-field" required autocomplete="username" placeholder=" ">
                     <label for="reg-user" class="input-label">User ID</label>
-                    <input id="reg-user" type="text" class="input-field" required autocomplete="username">
                 </div>
                 <div class="input-container">
+                    <input id="reg-email" type="email" class="input-field" required autocomplete="email" placeholder=" ">
                     <label for="reg-email" class="input-label">Email ID</label>
-                    <input id="reg-email" type="email" class="input-field" required autocomplete="email">
                 </div>
                  <div class="input-container">
+                    <input id="reg-pass" type="password" class="input-field" required autocomplete="new-password" placeholder=" ">
                     <label for="reg-pass" class="input-label">Password</label>
-                    <input id="reg-pass" type="password" class="input-field" required autocomplete="new-password">
                 </div>
                 <label class="checkbox-container">
                     <input type="checkbox" class="check-box" required>
@@ -58,27 +61,6 @@
         </div> 
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-    const formBox = document.getElementById('form-box');
-    const loginBtn = document.getElementById('login-btn');
-    const registerBtn = document.getElementById('register-btn');
-    const slider = document.getElementById('btn-slider');
-
-    registerBtn.addEventListener('click', () => {
-        // Move the slider to the right
-        slider.style.left = '110px';
-        // Add a class to the container to trigger the CSS transition
-        formBox.classList.add('show-register');
-    });
-
-    loginBtn.addEventListener('click', () => {
-        // Move the slider back to the left
-        slider.style.left = '0';
-        // Remove the class to revert to the login view
-        formBox.classList.remove('show-register');
-    });
-});
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
