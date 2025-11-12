@@ -1,101 +1,156 @@
-*{
+* {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    box-sizing: border-box; /* Good practice for easier layout */
+    font-family: Arial, Helvetica, sans-serif; /* More specific font stack */
 }
-.hero{
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+.hero {
     height: 100%;
     width: 100%;
     background-color: rgb(34, 39, 37);
-    /* background-image: linear-gradient(rgba(0,0,0,0.4)),rgba(0,0,0,0.4),url(banner.jpg); */
-    background-position: center;
-    background-size: cover;
-    position: absolute;
+    display: grid; /* Use Grid to easily center the form box */
+    place-items: center;
+    padding: 20px;
 } 
-.form-box{
-    width: 380px;
-    height: 480px;
+
+.form-box {
+    width: 100%;
+    max-width: 380px; /* Use max-width for responsiveness */
+    height: 520px; /* Increased height to fit content better */
     position: relative;
-    margin: 6% auto;
     background: #fff;
-    padding: 5px;
-    overflow:hidden;
+    padding: 10px;
+    overflow: hidden;
+    border-radius: 10px;
 }
-.button-box{
+
+.button-box {
     width: 220px;
     margin: 35px auto;
     position: relative;
     box-shadow: 0 0 20px 9px #ff61241f;
     border-radius: 30px;
 }
-.toggle-btn{
+
+.toggle-btn {
     padding: 10px 30px;
     cursor: pointer;
     background: transparent;
     border: 0;
     outline: none;
     position: relative;
+    width: 50%; /* Make buttons equal width */
 }
-#btn{
+
+/* FIX: Renamed ID for clarity and consistency */
+#btn-slider {
     top: 0;
     left: 0;
     position: absolute;
     width: 110px;
     height: 100%;
-    background: linear-gradient(to right, #ff105f,#ffad06);
+    background: linear-gradient(to right, #ff105f, #ffad06);
     border-radius: 30px;
-    transition: .5s;
+    transition: left 0.5s; /* Kept transition on 'left' for the slider */
 }
-.social-icons{
+
+.social-icons {
     margin: 30px auto;
     text-align: center;
 }
-.social-icons img{
+
+.social-icons img {
     width: 30px;
     margin: 0 12px;
     box-shadow: 0 0 20px 0 #7f7f7f3d;
     cursor: pointer;
     border-radius: 50%;
 }
-.input-group{
-    top: 180px;
+
+.input-group {
+    display: flex; /* Use Flexbox for better internal alignment */
+    flex-direction: column;
+    align-items: center;
     position: absolute;
     width: 280px;
-    transition: .5s;
+    transition: transform 0.5s ease-in-out; /* Use transform for smoother, more performant animations */
 }
-.input-field{
+
+/* FIX: Removed fixed top, let flexbox handle spacing */
+.input-container {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.input-field {
     width: 100%;
     padding: 10px 0;
-    margin: 5px 0;
-    border-left: 0;
-    border-right: 0;
+    border: none;
     border-bottom: 1px solid #999;
     outline: none;
     background: transparent;
+    font-size: 1rem;
 }
-.submit-btn{
+
+/* Added styles for a better floating label effect */
+.input-label {
+    display: none; /* Can be enhanced with JS for floating label effect */
+}
+
+.submit-btn {
     width: 85%;
     padding: 10px 30px;
     cursor: pointer;
     display: block;
-    margin: auto;
-    background: linear-gradient(to right, #ff105f,#ffad06);
-    border:0;
+    margin: 20px auto 0; /* Adjusted margin */
+    background: linear-gradient(to right, #ff105f, #ffad06);
+    border: 0;
     outline: none;
     border-radius: 30px;
+    color: white;
+    font-weight: bold;
 }
-.chech-box{
-    margin: 30px 10px 30px 0;
+
+/* FIX: Major layout and accessibility fix for checkboxes */
+.checkbox-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 15px 0;
 }
-span{
+
+/* FIX: Corrected typo from .chech-box */
+.check-box {
+    margin-right: 10px;
+}
+
+.checkbox-container span {
     color: #777;
     font-size: 12px;
-    bottom: 68px;
-    position: absolute;
+    /* Removed absolute positioning */
 }
-#login{
+
+/* FIX: Use transform for positioning and animation */
+#login-form {
     left: 50px;
+    transform: translateX(0%);
 }
-#register{
-    left:450px;
+#register-form {
+    left: 50px;
+    transform: translateX(120%); /* Start off-screen */
+}
+
+/* Class to control the state */
+.form-box.show-register #login-form {
+    transform: translateX(-120%); /* Move off-screen */
+}
+.form-box.show-register #register-form {
+    transform: translateX(0%); /* Move into view */
 }
