@@ -1,8 +1,8 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Good practice for easier layout */
-    font-family: Arial, Helvetica, sans-serif; /* More specific font stack */
+    box-sizing: border-box; 
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -14,15 +14,15 @@ body {
     height: 100%;
     width: 100%;
     background-color: rgb(34, 39, 37);
-    display: grid; /* Use Grid to easily center the form box */
+    display: grid;
     place-items: center;
     padding: 20px;
 } 
 
 .form-box {
     width: 100%;
-    max-width: 380px; /* Use max-width for responsiveness */
-    height: 520px; /* Increased height to fit content better */
+    max-width: 380px;
+    height: 520px;
     position: relative;
     background: #fff;
     padding: 10px;
@@ -45,10 +45,17 @@ body {
     border: 0;
     outline: none;
     position: relative;
-    width: 50%; /* Make buttons equal width */
+    width: 50%;
+    color: #777; /* Default color for inactive toggle */
+    transition: color 0.5s;
 }
 
-/* FIX: Renamed ID for clarity and consistency */
+/* --- FIX: Style for the active toggle button --- */
+.toggle-btn.active {
+    color: #000; /* Active button text is darker and more prominent */
+    font-weight: bold;
+}
+
 #btn-slider {
     top: 0;
     left: 0;
@@ -57,7 +64,7 @@ body {
     height: 100%;
     background: linear-gradient(to right, #ff105f, #ffad06);
     border-radius: 30px;
-    transition: left 0.5s; /* Kept transition on 'left' for the slider */
+    transition: left 0.5s;
 }
 
 .social-icons {
@@ -74,18 +81,19 @@ body {
 }
 
 .input-group {
-    display: flex; /* Use Flexbox for better internal alignment */
+    display: flex;
     flex-direction: column;
     align-items: center;
     position: absolute;
     width: 280px;
-    transition: transform 0.5s ease-in-out; /* Use transform for smoother, more performant animations */
+    transition: transform 0.5s ease-in-out;
 }
 
-/* FIX: Removed fixed top, let flexbox handle spacing */
+/* --- FIX: Floating Label Styling --- */
 .input-container {
+    position: relative; /* Crucial for positioning the label */
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 15px; /* Increased margin for better spacing */
 }
 
 .input-field {
@@ -98,17 +106,30 @@ body {
     font-size: 1rem;
 }
 
-/* Added styles for a better floating label effect */
 .input-label {
-    display: none; /* Can be enhanced with JS for floating label effect */
+    position: absolute;
+    top: 10px; /* Vertically center with the input text */
+    left: 0;
+    color: #999;
+    pointer-events: none; /* Allows clicks to pass through to the input */
+    transition: all 0.3s ease;
 }
+
+/* When the input is focused or has text in it, move the label up */
+.input-field:focus + .input-label,
+.input-field:not(:placeholder-shown) + .input-label {
+    top: -10px;
+    font-size: 12px;
+    color: #ff105f; /* Use an accent color for the active label */
+}
+/* --- End of Floating Label Fix --- */
 
 .submit-btn {
     width: 85%;
     padding: 10px 30px;
     cursor: pointer;
     display: block;
-    margin: 20px auto 0; /* Adjusted margin */
+    margin: 20px auto 0;
     background: linear-gradient(to right, #ff105f, #ffad06);
     border: 0;
     outline: none;
@@ -117,7 +138,6 @@ body {
     font-weight: bold;
 }
 
-/* FIX: Major layout and accessibility fix for checkboxes */
 .checkbox-container {
     width: 100%;
     display: flex;
@@ -126,7 +146,6 @@ body {
     margin: 15px 0;
 }
 
-/* FIX: Corrected typo from .chech-box */
 .check-box {
     margin-right: 10px;
 }
@@ -134,23 +153,20 @@ body {
 .checkbox-container span {
     color: #777;
     font-size: 12px;
-    /* Removed absolute positioning */
 }
 
-/* FIX: Use transform for positioning and animation */
 #login-form {
     left: 50px;
     transform: translateX(0%);
 }
 #register-form {
     left: 50px;
-    transform: translateX(120%); /* Start off-screen */
+    transform: translateX(120%);
 }
 
-/* Class to control the state */
 .form-box.show-register #login-form {
-    transform: translateX(-120%); /* Move off-screen */
+    transform: translateX(-120%);
 }
 .form-box.show-register #register-form {
-    transform: translateX(0%); /* Move into view */
+    transform: translateX(0%);
 }
