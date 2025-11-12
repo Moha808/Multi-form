@@ -58,6 +58,27 @@
         </div> 
     </main>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const formBox = document.getElementById('form-box');
+    const loginBtn = document.getElementById('login-btn');
+    const registerBtn = document.getElementById('register-btn');
+    const slider = document.getElementById('btn-slider');
+
+    registerBtn.addEventListener('click', () => {
+        // Move the slider to the right
+        slider.style.left = '110px';
+        // Add a class to the container to trigger the CSS transition
+        formBox.classList.add('show-register');
+    });
+
+    loginBtn.addEventListener('click', () => {
+        // Move the slider back to the left
+        slider.style.left = '0';
+        // Remove the class to revert to the login view
+        formBox.classList.remove('show-register');
+    });
+});
+    </script>
 </body>
 </html>
