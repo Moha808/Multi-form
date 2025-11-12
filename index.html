@@ -3,55 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Login & Register | Your Site</title>
     <link rel="stylesheet" href="multi.css">
 </head>
 <body>
-    <div class="hero">
-        <div class="form-box">
+    <main class="hero">
+        <div class="form-box" id="form-box">
             <div class="button-box">
-                <div id="btn"></div>
-                <button type="button" class="toggle-btn" onclick="login()">Log In</button>
-                <button type="button" class="toggle-btn" onclick="register()">Register</button>
+                <div id="btn-slider"></div>
+                <button type="button" class="toggle-btn" id="login-btn">Log In</button>
+                <button type="button" class="toggle-btn" id="register-btn">Register</button>
             </div>
             <div class="social-icons">
-                <img src="facebook.png">
-                <img src="tiktok.png">
-                <img src="snap.png">
+                <a href="#" aria-label="Login with Facebook"><img src="facebook.png" alt="Facebook logo"></a>
+                <a href="#" aria-label="Login with TikTok"><img src="tiktok.png" alt="TikTok logo"></a>
+                <a href="#" aria-label="Login with Snapchat"><img src="snap.png" alt="Snapchat logo"></a>
             </div>
-            <form id="login" class="input-group">
-                <input type="text" class="input-field" placeholder="User Id" required>
-                <input type="password" class="input-field" placeholder="Enter Password" required>
-                <input type="checkbox" class="chech-box"><span>Remember Password</span>
+
+            <form id="login-form" class="input-group">
+                <div class="input-container">
+                    <label for="login-user" class="input-label">User ID</label>
+                    <input id="login-user" type="text" class="input-field" required autocomplete="username">
+                </div>
+                <div class="input-container">
+                    <label for="login-pass" class="input-label">Password</label>
+                    <input id="login-pass" type="password" class="input-field" required autocomplete="current-password">
+                </div>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="check-box">
+                    <span>Remember Password</span>
+                </label>
                 <button type="submit" class="submit-btn">Log in</button>
             </form>
-            <form id="register" class="input-group">
-                <input type="text" class="input-field" placeholder="User Id" required>
-                <input type="email" class="input-field" placeholder="Email Id" required>
-                <input type="password" class="input-field" placeholder="Enter Password" required>
-                <input type="checkbox" class="chech-box"><span>I agree to the terms & conditions</span>
+
+            <form id="register-form" class="input-group">
+                <div class="input-container">
+                    <label for="reg-user" class="input-label">User ID</label>
+                    <input id="reg-user" type="text" class="input-field" required autocomplete="username">
+                </div>
+                <div class="input-container">
+                    <label for="reg-email" class="input-label">Email ID</label>
+                    <input id="reg-email" type="email" class="input-field" required autocomplete="email">
+                </div>
+                 <div class="input-container">
+                    <label for="reg-pass" class="input-label">Password</label>
+                    <input id="reg-pass" type="password" class="input-field" required autocomplete="new-password">
+                </div>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="check-box" required>
+                    <span>I agree to the terms & conditions</span>
+                </label>
                 <button type="submit" class="submit-btn">Register</button>
             </form>
         </div> 
-    </div>
-    <script>
-        var x = document.getElementById("login");
-        var y = document.getElementById("register");
-        var z = document.getElementById("btn");
+    </main>
 
-        function register(){
-            x.style.left = "-400px";
-            y.style.left = "50px";
-            z.style.left = "110px";
-        }
-        function login(){
-            x.style.left = "50px";
-            y.style.left = "450px";
-            z.style.left = "0";
-        }
-
-
-    </script>
-    
+    <script src="script.js"></script>
 </body>
 </html>
